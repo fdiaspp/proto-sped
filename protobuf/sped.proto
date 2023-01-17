@@ -1,7 +1,26 @@
 syntax = "proto3";
-import "custom_options.proto";
 import "google/protobuf/descriptor.proto";
 
+
+// EXTENSÃO DE FieldOptions
+// https://github.com/hoai265/CustomProtobufPluginExample/blob/master/custom_options.proto
+extend google.protobuf.FieldOptions {
+    optional GeneralConfs general_confs = 10001;
+    optional SpedConfs sped_confs = 10002;
+}
+
+message SpedConfs {
+    string field_type = 1;
+    int32 field_size = 2;
+}
+
+message GeneralConfs {
+    optional string default = 1;
+    optional string regex_validation = 2;
+
+}
+
+// EXTENSÃO DE EnumValueOptions
 // https://harshyatishmishra.medium.com/protocol-buffer-custom-options-528e555cfeab
 extend google.protobuf.EnumValueOptions {
     optional int32 value_option = 10001;
@@ -13,6 +32,8 @@ enum CodigoFinalidade {
     ARQUIVO_SUBSTITUTO = 1 [(value_option) = 1]; 
 }
 
+
+// ENUMS
 enum PerfilApresentacaoDoArquivo {
     PERFIL_A = 0 [(value_option) = -1, (value_option_str) = "A"];
     PERFIL_B = 1 [(value_option) = -1, (value_option_str) = "B"]; 
@@ -24,6 +45,8 @@ enum TipoAtividade {
     OUTROS = 1 [(value_option) = 1]; 
 }
 
+
+// REGISTROS
 message R0000 {
     optional string REG  = 1 [(general_confs).default = "0000", (sped_confs).field_type = "C", (sped_confs).field_size = 4];
     string COD_VER  = 2 [(sped_confs).field_type = "N", (sped_confs).field_size = 4];

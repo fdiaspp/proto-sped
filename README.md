@@ -16,5 +16,5 @@ rm -f $PROTOC_ZIP
 
 Compilando para Python 
 ```sh
-make build-pytho
+make build-python
 ```

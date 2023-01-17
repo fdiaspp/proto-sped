@@ -1,0 +1,43 @@
+syntax = "proto3";
+import "custom_options.proto";
+import "google/protobuf/descriptor.proto";
+
+// https://harshyatishmishra.medium.com/protocol-buffer-custom-options-528e555cfeab
+extend google.protobuf.EnumValueOptions {
+    optional int32 value_option = 10001;
+    optional string value_option_str = 10002;
+}
+
+enum CodigoFinalidade {
+    ARQUIVO_ORIGINAL = 0 [(value_option) = 0];
+    ARQUIVO_SUBSTITUTO = 1 [(value_option) = 1]; 
+}
+
+enum PerfilApresentacaoDoArquivo {
+    PERFIL_A = 0 [(value_option) = -1, (value_option_str) = "A"];
+    PERFIL_B = 1 [(value_option) = -1, (value_option_str) = "B"]; 
+    PERFIL_C = 2 [(value_option) = -1, (value_option_str) = "C"]; 
+}
+
+enum TipoAtividade {
+    INDUSTRIAL = 0 [(value_option) = 0];
+    OUTROS = 1 [(value_option) = 1]; 
+}
+
+message R0000 {
+    optional string REG  = 1 [(general_confs).default = "0000", (sped_confs).field_type = "C", (sped_confs).field_size = 4];
+    string COD_VER  = 2 [(sped_confs).field_type = "N", (sped_confs).field_size = 4];
+    CodigoFinalidade COD_FIN = 3 [(sped_confs).field_type = "N", (sped_confs).field_size = 1];
+    string DT_INI = 4 [(sped_confs).field_type = "N", (sped_confs).field_size = 8];
+    string DT_FIN = 5 [(sped_confs).field_type = "N", (sped_confs).field_size = 8];
+    string NOME = 6 [(sped_confs).field_type = "C", (sped_confs).field_size = 100];
+    string CNPJ = 7 [(sped_confs).field_type = "N", (sped_confs).field_size = 14];
+    string CPF = 8 [(sped_confs).field_type = "N", (sped_confs).field_size = 11];
+    string UF = 9 [(sped_confs).field_type = "C", (sped_confs).field_size = 2];
+    string IE = 10 [(sped_confs).field_type = "C", (sped_confs).field_size = 100];
+    string COD_MUN = 11 [(sped_confs).field_type = "N", (sped_confs).field_size = 7];
+    string IM = 12 [(sped_confs).field_type = "C", (sped_confs).field_size = 100];
+    string SUFRAMA = 13 [(sped_confs).field_type = "C", (sped_confs).field_size = 9];
+    PerfilApresentacaoDoArquivo IND_PERFIL = 14 [(sped_confs).field_type = "C", (sped_confs).field_size = 1];
+    TipoAtividade IND_ATIV = 15 [(sped_confs).field_type = "N", (sped_confs).field_size = 1];
+}

@@ -8,15 +8,12 @@ import sped_pb2
 class Sped:
     
     def __init__(self):
-        self.data: Dict[str, list] = {}
+        self.data = sped_pb2.SPED()
         
     def add(self, message):
-        block = message.REG[0]
-        
-        if self.data.get(block) is None:
-            self.data[block] = [message]
-        else:
-            self.data[block].append(message)
+        block_number = message.REG[0]
+        register_number = message.REG[1:]       
+        getattr(getattr(self.data, f"B{block_number}"), f"R{register_number}").extend([message])
 
 
 def get_register_type(line: str):
@@ -34,8 +31,7 @@ def process_line(line: str, message_schema: list):
     return zipped_data
 
 
-def main(path):
-    
+def main(path):    
     with open(path) as file:                
         while True:
             line = file.readline()   

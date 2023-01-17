@@ -39,3 +39,11 @@ message R0000 {
     string IND_PERFIL = 14 [(sped_confs).field_type = "C", (sped_confs).field_size = 1];
     string IND_ATIV = 15 [(sped_confs).field_type = "N", (sped_confs).field_size = 1];
 }
+
+message Bloco0 {
+    repeated R0000 R000 = 1;
+}
+
+message SPED {
+    Bloco0 B0 = 1;
+}

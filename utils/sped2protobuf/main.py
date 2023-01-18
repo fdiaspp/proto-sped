@@ -1,7 +1,14 @@
 import sys
-from typing import Dict
+import pathlib
 
-sys.path.append("../target/python")
+
+if not pathlib.Path("../../taget/python/sped_pb2.py").exists():
+    print("Protobuf schema não compilado na versão Python.\n"
+           "Na raiz do projeto, execute o seguinte comando\n"
+           "$ cd ../../ && make build-python && cd -")
+    exit(1)
+    
+sys.path.append("../../target/python")
 import sped_pb2
 
 

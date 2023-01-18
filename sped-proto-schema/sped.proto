@@ -1,0 +1,59 @@
+syntax = "proto3";
+import "google/protobuf/descriptor.proto";
+
+
+// EXTENSÃO DE FieldOptions
+// https://github.com/hoai265/CustomProtobufPluginExample/blob/master/custom_options.proto
+extend google.protobuf.FieldOptions {
+    optional GeneralConfs general_confs = 10001;
+    optional SpedConfs sped_confs = 10002;
+}
+
+message SpedConfs {
+    string field_type = 1;
+    int32 field_size = 2;
+}
+
+message GeneralConfs {
+    optional string default = 1;
+    optional string regex_validation = 2;
+
+}
+
+
+// REGISTROS
+message R0000 {
+    optional string REG  = 1 [(general_confs).default = "0000", (sped_confs).field_type = "C", (sped_confs).field_size = 4];
+    string COD_VER  = 2 [(sped_confs).field_type = "N", (sped_confs).field_size = 4];
+    string COD_FIN = 3 [(sped_confs).field_type = "N", (sped_confs).field_size = 1];
+    string DT_INI = 4 [(sped_confs).field_type = "N", (sped_confs).field_size = 8];
+    string DT_FIN = 5 [(sped_confs).field_type = "N", (sped_confs).field_size = 8];
+    string NOME = 6 [(sped_confs).field_type = "C", (sped_confs).field_size = 100];
+    string CNPJ = 7 [(sped_confs).field_type = "N", (sped_confs).field_size = 14];
+    string CPF = 8 [(sped_confs).field_type = "N", (sped_confs).field_size = 11];
+    string UF = 9 [(sped_confs).field_type = "C", (sped_confs).field_size = 2];
+    string IE = 10 [(sped_confs).field_type = "C", (sped_confs).field_size = 100];
+    string COD_MUN = 11 [(sped_confs).field_type = "N", (sped_confs).field_size = 7];
+    string IM = 12 [(sped_confs).field_type = "C", (sped_confs).field_size = 100];
+    string SUFRAMA = 13 [(sped_confs).field_type = "C", (sped_confs).field_size = 9];
+    string IND_PERFIL = 14 [(sped_confs).field_type = "C", (sped_confs).field_size = 1];
+    string IND_ATIV = 15 [(sped_confs).field_type = "N", (sped_confs).field_size = 1];
+}
+
+
+message R0001 {
+    optional string REG  = 1 [(general_confs).default = "0001", (sped_confs).field_type = "C", (sped_confs).field_size = 4];
+    string IND_MOV  = 2 [(sped_confs).field_type = "N", (sped_confs).field_size = 1];    
+}
+
+// BLOCOS
+message Bloco0 {
+    repeated R0000 R000 = 1;
+    repeated R0001 R001 = 2;
+}
+
+
+// RAIZ
+message SPED {
+    Bloco0 B0 = 1;
+}

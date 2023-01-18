@@ -1,7 +1,7 @@
 default:
 	@echo "execute make build"
 
-SRC_DIR=./protobuf
+SRC_DIR=./sped-proto-schema
 DST_DIR=./target
 FILES=`find ${SRC_DIR} -name "*.proto"`
 

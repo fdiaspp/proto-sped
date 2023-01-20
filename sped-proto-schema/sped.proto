@@ -5,8 +5,8 @@ import "google/protobuf/descriptor.proto";
 // EXTENSÃO DE FieldOptions
 // https://github.com/hoai265/CustomProtobufPluginExample/blob/master/custom_options.proto
 extend google.protobuf.FieldOptions {
-    optional GeneralConfs general_confs = 10001;
-    optional SpedConfs sped_confs = 10002;
+    optional GeneralConfs general = 10001;
+    optional SpedConfs sped = 10002;
 }
 
 message SpedConfs {
@@ -23,27 +23,26 @@ message GeneralConfs {
 
 // REGISTROS
 message R0000 {
-    optional string REG  = 1 [(general_confs).default = "0000", (sped_confs).field_type = "C", (sped_confs).field_size = 4];
-    string COD_VER  = 2 [(sped_confs).field_type = "N", (sped_confs).field_size = 4];
-    string COD_FIN = 3 [(sped_confs).field_type = "N", (sped_confs).field_size = 1];
-    string DT_INI = 4 [(sped_confs).field_type = "N", (sped_confs).field_size = 8];
-    string DT_FIN = 5 [(sped_confs).field_type = "N", (sped_confs).field_size = 8];
-    string NOME = 6 [(sped_confs).field_type = "C", (sped_confs).field_size = 100];
-    string CNPJ = 7 [(sped_confs).field_type = "N", (sped_confs).field_size = 14];
-    string CPF = 8 [(sped_confs).field_type = "N", (sped_confs).field_size = 11];
-    string UF = 9 [(sped_confs).field_type = "C", (sped_confs).field_size = 2];
-    string IE = 10 [(sped_confs).field_type = "C", (sped_confs).field_size = 100];
-    string COD_MUN = 11 [(sped_confs).field_type = "N", (sped_confs).field_size = 7];
-    string IM = 12 [(sped_confs).field_type = "C", (sped_confs).field_size = 100];
-    string SUFRAMA = 13 [(sped_confs).field_type = "C", (sped_confs).field_size = 9];
-    string IND_PERFIL = 14 [(sped_confs).field_type = "C", (sped_confs).field_size = 1];
-    string IND_ATIV = 15 [(sped_confs).field_type = "N", (sped_confs).field_size = 1];
+    string REG           = 1 [(sped).field_type = "C", (sped).field_size = 4];
+    int32 COD_VER       = 2 [(sped).field_type = "N", (sped).field_size = 4];
+    int32 COD_FIN       = 3 [(sped).field_type = "N", (sped).field_size = 1];
+    int32 DT_INI        = 4 [(sped).field_type = "N", (sped).field_size = 8];
+    int32 DT_FIN        = 5 [(sped).field_type = "N", (sped).field_size = 8];
+    string NOME          = 6 [(sped).field_type = "C", (sped).field_size = 100];
+    int32 CNPJ          = 7 [(sped).field_type = "N", (sped).field_size = 14];
+    int32 CPF           = 8 [(sped).field_type = "N", (sped).field_size = 11];
+    string UF            = 9 [(sped).field_type = "C", (sped).field_size = 2];
+    string IE            = 10 [(sped).field_type = "C", (sped).field_size = 100];
+    int32 COD_MUN       = 11 [(sped).field_type = "N", (sped).field_size = 7];
+    string IM            = 12 [(sped).field_type = "C", (sped).field_size = 100];
+    string SUFRAMA       = 13 [(sped).field_type = "C", (sped).field_size = 9];
+    string IND_PERFIL    = 14 [(sped).field_type = "C", (sped).field_size = 1];
+    int32 IND_ATIV      = 15 [(sped).field_type = "N", (sped).field_size = 1];
 }
 
-
 message R0001 {
-    optional string REG  = 1 [(general_confs).default = "0001", (sped_confs).field_type = "C", (sped_confs).field_size = 4];
-    string IND_MOV  = 2 [(sped_confs).field_type = "N", (sped_confs).field_size = 1];    
+    string REG           = 1 [(sped).field_type = "C", (sped).field_size = 4];
+    int32 IND_MOV       = 2 [(sped).field_type = "N", (sped).field_size = 1];    
 }
 
 // BLOCOS
